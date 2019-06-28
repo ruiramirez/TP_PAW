@@ -19,3 +19,4 @@ var bidSchema = new Schema ({
 });
 
 module.exports = mongoose.model("Bid", bidSchema);
+
