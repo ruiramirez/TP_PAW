@@ -1,24 +1,56 @@
-const express = require("express");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
+var passport = require("passport");
+var jwt = require("jsonwebtoken");
+var userController = require("../controllers/userController");
+var config = require("../config/database");
 
 //Register
-router.get("/register", (req, res, next) => {
-  res.send("REGISTER");
-});
+router.post("/register", userController.registerUser);
 
 //Authenticate
-router.post('/authenticate', (req, res, next) => {
-    res.send('AUTHENTICATE');
+router.post("/authenticate", (req, res,  next) => {
+  var username = req.body.Username;
+  var password = req.body.Password;
+
+  userController.getByUsername(username, (err, user) => {
+    if(err) {
+      throw err;
+    }
+    if(!user) {
+      return res.json({success: false, msg: 'User not found'});
+    }
+    console.log(user);
+    console.log(password);
+    console.log(user.Password);
+    userController.comparePassword(password, user.Password, (err, isMatch) => {
+      if (err) {
+        throw err;
+      }
+      if (isMatch) {
+        var token = jwt.sign(user.toJSON(), config.secret, {
+          expiresIn: 86400 //24 horas
+        });
+
+        res.json({
+          success: true,
+          token: 'Bearer ' + token,
+          user: {
+            id: user._id,
+            username: user.Username,
+            email: user.Email
+          } 
+        });
+      } else {
+        return res.json({success: false, msg: 'Wrong Password'});
+      }
+    });
+  });
 });
 
-//Login
-router.get('/profile', (req, res, next) => {
-    res.send('PROFILE');
-});
-
-//Validate
-router.get('/validate', (req, res, next) => {
-    res.send('VALIDATE');
+//profile pode ser a homepage/dashboard
+router.get("/profile", passport.authenticate('jwt', {session: false}), (req, res, next) => {
+  res.json({user: req.user});
 });
 
 module.exports = router;
