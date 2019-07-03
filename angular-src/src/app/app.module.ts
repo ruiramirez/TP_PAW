@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { JwtInterceptor } from './helper/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +20,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ResaleFormComponent } from './resale-form/resale-form.component';
 import { AuctionsStateComponent } from './auctions-state/auctions-state.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,8 @@ import { AuctionsStateComponent } from './auctions-state/auctions-state.componen
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule,
     MDBBootstrapModule.forRoot(),
@@ -60,7 +66,7 @@ import { AuctionsStateComponent } from './auctions-state/auctions-state.componen
 
     ])
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
