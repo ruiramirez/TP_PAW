@@ -44,13 +44,13 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
         component: LoginComponent
       },
       {
-        path: 'app-regiter', component: RegisterComponent
+        path: 'app-register', component: RegisterComponent
       },
       {
         path: 'app-auctions', component: AuctionsComponent
       },
       {
-        path: 'app-resale-form', component: ResaleFormComponent
+        path: 'app-home/app-resale-form', component: ResaleFormComponent
       }
 
     ])
