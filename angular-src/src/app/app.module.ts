@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { JwtInterceptor } from './helper/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResaleFormComponent } from './resale-form/resale-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,8 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule,
     MDBBootstrapModule.forRoot(),
@@ -44,18 +50,18 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
         component: LoginComponent
       },
       {
-        path: 'app-regiter', component: RegisterComponent
+        path: 'app-register', component: RegisterComponent
       },
       {
         path: 'app-auctions', component: AuctionsComponent
       },
       {
-        path: 'app-resale-form', component: ResaleFormComponent
+        path: 'app-home/app-resale-form', component: ResaleFormComponent
       }
 
     ])
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
