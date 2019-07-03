@@ -17,26 +17,16 @@
             </div>
           </div>
 
-         
-          <!-- Password -->
-          <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-            aria-describedby="defaultRegisterFormPasswordHelpBlock">
-          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-            At least 8 characters and 1 digit
-          </small>
 
-
-
-
-          <!-- Sign up button -->
+          <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Description</textarea>
+          </div>
+<input type="file" (change)="onFileChanged($event)">
           <button mdbBtn color="info" class="my-4" type="submit">Register</button>
-
-
-
-
         </form>
-        <!-- Default form register -->
+      
       </div>
+      
     </div>
   </div>
 </div>

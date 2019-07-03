@@ -7,12 +7,13 @@
       </div>
       <div class="card-body text-center">
         <form class="text-center border border-light p-5">
-
+          <input type="text" id="defaultRegisterFormUsername" class="form-control mb-4" placeholder="Username">
           <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
           <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
             aria-describedby="defaultRegisterFormPasswordHelpBlock">
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
           </small>
+          <h6 class="info">Personal Info</h6>
           <input type="text" id="defaultRegisterFormName" class="form-control mb-4" placeholder="Name">
 
           <input type="text" id="defaultRegisterFormAdress" class="form-control mb-4" placeholder="Address">
@@ -21,10 +22,11 @@
               <input type="text" id="defaultRegisterFormCity" class="form-control" placeholder="City">
             </div>
             <div class="col">
-              <input type="number" id="defaultRegisterFormPostalCode" class="form-control" placeholder="PostalCode">
+              <input type="text" id="defaultRegisterFormPostalCode" class="form-control" placeholder="PostalCode">
             </div>
-          </div>
 
+          </div>
+          <input type="text" id="defaultRegisterFormCountry" class="form-control" placeholder="Country">
 
           <!-- Sign up button -->
           <button mdbBtn color="info" class="my-4" type="submit">Register</button>

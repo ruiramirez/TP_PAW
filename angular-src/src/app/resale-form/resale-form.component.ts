@@ -5,7 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './resale-form.component.html',
   styleUrls: ['./resale-form.component.css']
 })
-export class ResaleFormComponent implements OnInit {
+export class ResaleFormComponent implements 
+
+OnInit {
 
   constructor() { }
 

@@ -15,6 +15,7 @@ import { AuctionsComponent } from './auctions/auctions.component';
 import { HomeComponent } from './home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResaleFormComponent } from './resale-form/resale-form.component';
+import { AuctionsStateComponent } from './auctions-state/auctions-state.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
     RegisterComponent,
     AuctionsComponent,
     HomeComponent,
-    ResaleFormComponent
+    ResaleFormComponent,
+    AuctionsStateComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,9 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
       },
       {
         path: 'app-home/app-resale-form', component: ResaleFormComponent
+      },
+      {
+        path:'app-home/app-auctions-state', component: AuctionsStateComponent
       }
 
     ])
