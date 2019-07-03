@@ -1,0 +1,19 @@
+.bg-card {
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 100%;
+}
+
+.cbody-100 {
+  height: 150px;
+}
+.drop{
+  position:relative
+}
+.btn btn-outline-primary {
+  position: absolute;
+  bottom: 0;
+  right: 0
+}

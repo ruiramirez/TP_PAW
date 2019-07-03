@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" >RevendeTele</a>
+        </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="app-auctions">Auctions <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="app-home">Home</a>
+      </li>
+      
+
+      <div class="drop">
+
+        <div ngbDropdown placement="top-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button routerLink="app-login" routerLinkActive="active" ngbDropdownItem>Login</button>
+            <button routerLink="app-register" ngbDropdownItem>Register</button>
+
+          </div>
+        </div>
+      </div>   
+
+    </ul>
+
+
+  </div>
+</nav>
+

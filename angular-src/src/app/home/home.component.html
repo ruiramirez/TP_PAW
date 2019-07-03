@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-body">
+
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="app-resale-form">Submit Resale Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Visualize Auctions State</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+    <div class="card">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h3>User Lists</h3>
+            <div class="card text-center" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Bids Offers</h5>
+                <p class="card-text">List with all bids offers</p>
+                <a href="#" class="btn btn-primary">Open details </a>
+              </div>
+            </div>
+
+            <div class="card text-center" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Submitted items to Auction</h5>
+                <p class="card-text">List with all items submitted</p>
+                <a href="#" class="btn btn-primary">open details </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+              <h3>User Numbers</h3>
+           <div class="card">
+             <div class="card-body">
+               <h5>Auctions won:</h5>
+              <p> 33333</p>
+             </div>
+           </div>
+           <div class="card">
+             <div class="card-body">
+               <h5>Value Gains</h5>
+               <p> 25667</p>
+             </div>
+           </div>
+           <div class="card">
+             <div class="card-body">
+               <h5>Number of Bids</h5>
+               <p>3</p>
+             </div>
+           </div>
+          </div>
+          <div class="col-sm">
+            <h3>Charts</h3>
+            <div>
+              <div>
+                <div class="chart">
+                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+            <div class="wrapper">
+              
+              
+              <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
