@@ -6,37 +6,31 @@
         <h3 class="card-title">Resale form</h3>
       </div>
       <div class="card-body text-center">
-        <form class="text-center border border-light p-5">
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="text-center border border-light p-5">
 
           <div class="form-row mb-4">
             <div class="col">
-              <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Title">
+              <input type="text" required [(ngModel)]="Title" name="Title" #name="ngModel" 
+              id="defaultRegisterFormTitle" class="form-control" placeholder="Title">
             </div>
             <div class="col">
-              <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Value">
+              <input type="text" required [(ngModel)]="Value" name="Value" #name="ngModel" id="defaultRegisterFormLastName" class="form-control" placeholder="Value">
             </div>
           </div>
 
-         
-          <!-- Password -->
-          <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-            aria-describedby="defaultRegisterFormPasswordHelpBlock">
-          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-            At least 8 characters and 1 digit
-          </small>
 
-
-
-
-          <!-- Sign up button -->
-          <button mdbBtn color="info" class="my-4" type="submit">Register</button>
-
-
-
-
+          <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Description</textarea>
+          </div>
+          <input type="file" [disabled]="!registerForm.form.valid" (change)="onFileChanged($event)">
+          <br>
+          <br>
+          <button mdbBtn color="info" class="btn btn-success" type="submit"
+            [disabled]="!registerForm.form.valid">Register</button>
         </form>
-        <!-- Default form register -->
+      
       </div>
+      
     </div>
   </div>
 </div>

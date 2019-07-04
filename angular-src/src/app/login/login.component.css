@@ -1,4 +1,5 @@
 .row {
+<<<<<<< HEAD
   justify-content: center
  }
  .ng-valid[required],
@@ -11,3 +12,17 @@
    border-left: 5px solid #a94442;
    /* red */
  }
+=======
+ justify-content: center
+}
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+  /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+  /* red */
+}
+>>>>>>> a41427c5af358f8f42008a21bdf669d169be8fc3

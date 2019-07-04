@@ -18,6 +18,7 @@ import { AuctionsComponent } from './auctions/auctions.component';
 import { HomeComponent } from './home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResaleFormComponent } from './resale-form/resale-form.component';
+import { AuctionsStateComponent } from './auctions-state/auctions-state.component';
 
 import { AuthService } from './services/auth.service';
 
@@ -29,7 +30,8 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     AuctionsComponent,
     HomeComponent,
-    ResaleFormComponent
+    ResaleFormComponent,
+    AuctionsStateComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,11 @@ import { AuthService } from './services/auth.service';
       },
       {
         path: 'app-home/app-resale-form', component: ResaleFormComponent
-      }
+      },
+      {
+        path:'app-home/app-auctions-state', component: AuctionsStateComponent
+      },
+      {path:'app-login/app-register',component:RegisterComponent}
 
     ])
   ],

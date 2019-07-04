@@ -5,31 +5,41 @@
       <div class="card-header">
         <h3 class="card-title">Sign up</h3>
       </div>
-      <div class="card-body text-center" >
+      <div class="card-body text-center">
         <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="text-center border border-light p-5">
-          <input type="text" required [(ngModel)]="Username" name="Username" #name="ngModel" id="defaultRegisterFormUsername" class="form-control mb-4" placeholder="Username">
-          <input type="email" required [(ngModel)]="Email" name="Email" #name="ngModel" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-          <input type="password" required [(ngModel)]="Password" name="Password" #name="ngModel" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-            aria-describedby="defaultRegisterFormPasswordHelpBlock">
-          <small id="defaultRegisterFormPasswordHelpBlock"  class="form-text text-muted mb-4">
-          </small>
-          <input type="text" required [(ngModel)]="Name" name="Name" #name="ngModel" id="defaultRegisterFormName" class="form-control mb-4" placeholder="Name">
 
-          <input type="text" required id="defaultRegisterFormAdress" [(ngModel)]="AddressDetail" name="AddressDetail" #name="ngModel" class="form-control mb-4" placeholder="Address">
+          <input type="text" required [(ngModel)]="Username" name="Username" #name="ngModel"
+            id="defaultRegisterFormUsername" class="form-control mb-4" placeholder="Username">
+
+          <input type="email" required [(ngModel)]="Email" name="Email" #name="ngModel" id="defaultRegisterFormEmail"
+            class="form-control mb-4" placeholder="E-mail">
+          <input type="password" required [(ngModel)]="Password" name="Password" #name="ngModel"
+            id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          </small>
+          <input type="text" required [(ngModel)]="Name" name="Name" #name="ngModel" id="defaultRegisterFormName"
+            class="form-control mb-4" placeholder="Name">
+
+          <input type="text" required id="defaultRegisterFormAdress" [(ngModel)]="AddressDetail" name="AddressDetail"
+            #name="ngModel" class="form-control mb-4" placeholder="Address">
           <div class="form-row mb-4">
             <div class="col">
-              <input type="text" required id="defaultRegisterFormCity" [(ngModel)]="City" name="City" #name="ngModel" class="form-control" placeholder="City">
+              <input type="text" required id="defaultRegisterFormCity" [(ngModel)]="City" name="City" #name="ngModel"
+                class="form-control" placeholder="City">
             </div>
             <div class="col">
-              <input type="text" required id="defaultRegisterFormPostalCode" [(ngModel)]="PostalCode" name="PostalCode" #name="ngModel" class="form-control" placeholder="PostalCode">
+              <input type="text" required id="defaultRegisterFormPostalCode" [(ngModel)]="PostalCode" name="PostalCode"
+                #name="ngModel" class="form-control" placeholder="PostalCode">
             </div>
+
           </div>
+          <input type="text" required [(ngModel)]="Country" name="Country" #name="ngModel"
+            id="defaultRegisterFormCountry" class="form-control mb-4" placeholder="Country">
 
           <!-- Sign up button -->
-          <button mdbBtn color="info" class="btn btn-success" type="submit" [disabled]="!registerForm.form.valid">Register</button>
-
-
-
+          <button mdbBtn color="info" class="btn btn-success" type="submit"
+            [disabled]="!registerForm.form.valid">Register</button>
 
         </form>
         <!-- Default form register -->

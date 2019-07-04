@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResaleFormComponent implements OnInit {
 
+  Title:string;
+  Value: Number;
   constructor() { }
 
   ngOnInit() {
+  }
+  onSubmit(){
+    const auctions={
+      Title:this.Title,
+      value:this.Value
+    }
   }
 
 }
