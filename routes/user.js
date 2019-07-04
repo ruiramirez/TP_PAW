@@ -9,16 +9,17 @@ var config = require("../config/database");
 router.post("/register", userController.registerUser);
 
 //Authenticate
-router.post("/authenticate", (req, res,  next) => {
+router.post("/authenticate", (req, res, next) => {
+  console.log("aqui ->>>>>>>>" + req);
   var username = req.body.Username;
   var password = req.body.Password;
 
   userController.getByUsername(username, (err, user) => {
-    if(err) {
+    if (err) {
       throw err;
     }
-    if(!user) {
-      return res.json({success: false, msg: 'User not found'});
+    if (!user) {
+      return res.json({ success: false, msg: "User not found" });
     }
     console.log(user);
     console.log(password);
@@ -34,23 +35,27 @@ router.post("/authenticate", (req, res,  next) => {
 
         res.json({
           success: true,
-          token: 'Bearer ' + token,
+          token: "Bearer " + token,
           user: {
             id: user._id,
             username: user.Username,
             email: user.Email
-          } 
+          }
         });
       } else {
-        return res.json({success: false, msg: 'Wrong Password'});
+        return res.json({ success: false, msg: "Wrong Password" });
       }
     });
   });
 });
 
 //profile pode ser a homepage/dashboard
-router.get("/profile", passport.authenticate('jwt', {session: false}), (req, res, next) => {
-  res.json({user: req.user});
-});
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    res.json({ user: req.user });
+  }
+);
 
 module.exports = router;

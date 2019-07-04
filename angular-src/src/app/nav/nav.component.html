@@ -10,7 +10,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="app-home">Home</a>
       </li>
-      
+
 
       <div class="drop">
 
@@ -19,10 +19,10 @@
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button routerLink="app-login" routerLinkActive="active" ngbDropdownItem>Login</button>
             <button routerLink="app-register" ngbDropdownItem>Register</button>
-
+            <button (click)="onLogoutClick()" ngbDropdownItem>Logout</button>
           </div>
         </div>
-      </div>   
+      </div>
 
     </ul>
 

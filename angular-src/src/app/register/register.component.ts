@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
+import { Router } from "@angular/router";
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent implements OnInit {
   Email: string;
@@ -14,11 +15,11 @@ export class RegisterComponent implements OnInit {
   City: string;
   PostalCode: string;
   Country: string;
+  UserType: string;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     const user = {
@@ -29,10 +30,16 @@ export class RegisterComponent implements OnInit {
       AddressDetail: this.AddressDetail,
       City: this.City,
       PostalCode: this.PostalCode,
-      Country: this.Country
+      Country: this.Country,
+      UserType: "User"
     };
 
     console.log(user);
-  }
 
+    this.authService.registerUser(user).subscribe(data => {
+      console.log(data);
+      console.log("it works");
+      this.router.navigate(["/app-login"]);
+    });
+  }
 }

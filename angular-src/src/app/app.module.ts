@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResaleFormComponent } from './resale-form/resale-form.component';
 
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
 
     ])
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
