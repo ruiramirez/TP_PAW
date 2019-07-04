@@ -5,13 +5,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './resale-form.component.html',
   styleUrls: ['./resale-form.component.css']
 })
-export class ResaleFormComponent implements 
+export class ResaleFormComponent implements OnInit {
 
-OnInit {
-
+  Title:string;
+  Value: Number;
   constructor() { }
 
   ngOnInit() {
+  }
+  onSubmit(){
+    const auctions={
+      Title:this.Title,
+      value:this.Value
+    }
   }
 
 }

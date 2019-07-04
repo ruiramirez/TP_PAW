@@ -7,14 +7,17 @@
         <h3 class="card-title">Login</h3>
       </div>
       <div class="card-body text-center">
-        <form>
+         <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="text-center border border-light p-5">
 
-          <input type="text" id="defaultLoginFormUsername" class="form-control mb-4" placeholder="Username">
+            <input type="text" required [(ngModel)]="Username" name="Username" #name="ngModel"
+              id="defaultRegisterFormUsername" class="form-control mb-4" placeholder="Username">
 
-          <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+        <input type="password" required [(ngModel)]="Password" name="Password" #name="ngModel"
+          id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+          aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
-
-          <button mdbBtn color="info" class="my-4" type="submit">Sign in</button>
+<br>
+          <button mdbBtn color="info" class="btn btn-success" type="submit" [disabled]="!registerForm.form.valid">Sign in</button>
 
           <p>Not a member?
             <a routerLink="app-register">Register</a>

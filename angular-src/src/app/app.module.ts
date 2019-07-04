@@ -62,7 +62,8 @@ import { AuctionsStateComponent } from './auctions-state/auctions-state.componen
       },
       {
         path:'app-home/app-auctions-state', component: AuctionsStateComponent
-      }
+      },
+      {path:'app-login/app-register',component:RegisterComponent}
 
     ])
   ],
