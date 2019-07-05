@@ -10,7 +10,7 @@ router.post("/register", userController.registerUser);
 
 //Authenticate
 router.post("/authenticate", (req, res, next) => {
-  
+
   var username = req.body.Username;
   var password = req.body.Password;
 
@@ -19,11 +19,11 @@ router.post("/authenticate", (req, res, next) => {
       throw err;
     }
     if (!user) {
-      return res.json({ success: false, msg: "User not found" });
+      return res.json({
+        success: false,
+        msg: "User not found"
+      });
     }
-    console.log(user);
-    console.log(password);
-    console.log(user.Password);
     userController.comparePassword(password, user.Password, (err, isMatch) => {
       if (err) {
         throw err;
@@ -43,7 +43,10 @@ router.post("/authenticate", (req, res, next) => {
           }
         });
       } else {
-        return res.json({ success: false, msg: "Wrong Password" });
+        return res.json({
+          success: false,
+          msg: "Wrong Password"
+        });
       }
     });
   });
@@ -52,9 +55,13 @@ router.post("/authenticate", (req, res, next) => {
 //profile pode ser a homepage/dashboard
 router.get(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   (req, res, next) => {
-    res.json({ user: req.user });
+    res.json({
+      user: req.user
+    });
   }
 );
 

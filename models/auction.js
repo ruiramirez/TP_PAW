@@ -36,6 +36,11 @@ var auctionSchema = new Schema({
     type: userSchema,
     required: true
   },
+  Bids: [{
+    User: userSchema,
+    Value: Number,
+    Date: Date
+}],
   Status: {
     type: String,
     required: true,

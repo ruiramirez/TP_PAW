@@ -11,7 +11,9 @@ import { Router } from "@angular/router";
 export class NavComponent implements OnInit {
   constructor(private authservice: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   onLogoutClick() {
     this.authservice.logout();

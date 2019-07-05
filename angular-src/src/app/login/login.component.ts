@@ -20,13 +20,14 @@ export class LoginComponent implements OnInit {
     };
 
     this.authservice.authenticateUser(loginUser).subscribe(data => {
-      console.log("DATA---->", data);
 
       if (data["success"] === true) {
         this.authservice.storeUserData(data["token"], data["user"]);
-
         this.router.navigate(["/app-home"]);
+
         //if tipo user redireciona p "home"....
+      } else {
+        this.router.navigate(["/app-login"]);
       }
     });
 
