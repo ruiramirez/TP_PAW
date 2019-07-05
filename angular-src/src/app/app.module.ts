@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { AuctionsStateComponent } from './auctions-state/auctions-state.componen
 
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -43,34 +44,9 @@ import { JwtModule } from '@auth0/angular-jwt';
     MDBBootstrapModule.forRoot(),
     ChartsModule,
     JwtModule,
-    RouterModule.forRoot([
-      {
-        path: '', redirectTo: 'app-login', pathMatch: 'full'
-      },
-      {
-        path: 'app-nav', component: NavComponent
-      },
-      {
-        path: 'app-login',
-        component: LoginComponent
-      },
-      {
-        path: 'app-register', component: RegisterComponent
-      },
-      {
-        path: 'app-auctions', component: AuctionsComponent
-      },
-      {
-        path: 'app-home/app-resale-form', component: ResaleFormComponent
-      },
-      {
-        path:'app-home/app-auctions-state', component: AuctionsStateComponent
-      },
-      {path:'app-login/app-register',component:RegisterComponent}
-
-    ])
-  ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService],
+    RouterModule
+],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

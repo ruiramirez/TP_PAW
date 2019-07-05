@@ -10,7 +10,7 @@ router.post("/register", userController.registerUser);
 
 //Authenticate
 router.post("/authenticate", (req, res, next) => {
-  console.log("aqui ->>>>>>>>" + req);
+  console.log("aqui ->>>>>>>>" + req.body.Username);
   var username = req.body.Username;
   var password = req.body.Password;
 
@@ -21,9 +21,6 @@ router.post("/authenticate", (req, res, next) => {
     if (!user) {
       return res.json({ success: false, msg: "User not found" });
     }
-    console.log(user);
-    console.log(password);
-    console.log(user.Password);
     userController.comparePassword(password, user.Password, (err, isMatch) => {
       if (err) {
         throw err;

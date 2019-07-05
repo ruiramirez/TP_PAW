@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { user } from "src/app/interfaces/user";
 import { LoginUser } from "src/app/interfaces/loginUser";
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -52,23 +51,27 @@ export class AuthService {
 
   loadToken() {
     const token = localStorage.getItem("id_token");
-    this.authToken = token;
+    return this.authToken = token;
   }
 
   loggedIn() {
+
+    if (!localStorage.getItem("id_token")) {
+      return false;
+    }
+
     const helper = new JwtHelperService();
 
     const current = new Date();
-    const expirationDate = helper.getTokenExpirationDate(this.authToken);
 
-    return current > expirationDate;
-}
+    const expirationDate = helper.getTokenExpirationDate(this.loadToken());
+
+    return current.getTime() < expirationDate.getTime();
+  }
 
   logout() {
-    this.loggedIn();
     this.authToken = null;
     this.LoginUser = null;
     localStorage.clear();
-
   }
 }

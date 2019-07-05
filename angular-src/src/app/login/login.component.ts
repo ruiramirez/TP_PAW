@@ -23,9 +23,11 @@ export class LoginComponent implements OnInit {
 
       if (data["success"] === true) {
         this.authservice.storeUserData(data["token"], data["user"]);
-
         this.router.navigate(["/app-home"]);
+
         //if tipo user redireciona p "home"....
+      } else {
+        this.router.navigate(["/app-login"]);
       }
     });
 
