@@ -21,6 +21,7 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
 import { AuctionsStateComponent } from './auctions-state/auctions-state.component';
 
 import { AuthService } from './services/auth.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AuthService } from './services/auth.service';
     NgbModule,
     MDBBootstrapModule.forRoot(),
     ChartsModule,
+    JwtModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo: 'app-login', pathMatch: 'full'
