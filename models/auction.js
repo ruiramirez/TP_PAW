@@ -26,11 +26,11 @@ var auctionSchema = new Schema({
   },
   PropValue: {
     type: Number,
-    required: true
+   // required: true
   },
   FinalValue: {
     type: Number,
-    required: true
+   // required: true
   },
   User: {
     type: userSchema,

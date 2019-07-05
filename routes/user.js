@@ -10,7 +10,7 @@ router.post("/register", userController.registerUser);
 
 //Authenticate
 router.post("/authenticate", (req, res, next) => {
-  console.log("aqui ->>>>>>>>" + req);
+  
   var username = req.body.Username;
   var password = req.body.Password;
 

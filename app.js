@@ -8,6 +8,7 @@ var config = require("./config/database");
 var app = express();
 
 const userRouter = require("./routes/user");
+const auctionRouter =require("./routes/auction");
 
 app.use(cors()); //CORS middleware, ver página do npm cors
 app.use(bodyParser.json()); //bodyParser Middleware
@@ -30,3 +31,4 @@ db.once("open", () => console.log("Connected to Database"));
 app.listen(3000, () => console.log("Server Started"));
 
 app.use("/user", userRouter);
+app.use("/auction", auctionRouter);

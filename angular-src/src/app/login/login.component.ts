@@ -10,9 +10,9 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   Password: string;
   Username: string;
-  constructor(private authservice: AuthService, private router: Router) {}
+  constructor(private authservice: AuthService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   onSubmit() {
     const loginUser = {
       Username: this.Username,
@@ -33,4 +33,4 @@ export class LoginComponent implements OnInit {
 
   }
 }
-}
+
