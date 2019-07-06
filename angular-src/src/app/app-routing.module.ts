@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'app-auctions', component: AuctionsComponent },
   { path: 'app-auctions-state', component: AuctionsStateComponent },
   { path: 'app-home/app-resale-form', component: ResaleFormComponent },
-  { path: 'app-home/app-auction-state', component: AuctionsStateComponent}
+  { path: 'app-home/app-auctions-state', component: AuctionsStateComponent}
 ];
 
 @NgModule({
