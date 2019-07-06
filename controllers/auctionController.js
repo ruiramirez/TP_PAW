@@ -25,7 +25,12 @@ auctionController.registerAuction = function (req, res, next) {
         PropValue: req.body.PropValue,
         FinalValue: req.body.FinalValue,
         User: req.body.User,
-        Status: "Pending"
+        Status: "Pending",
+        Bids: [{
+            User: req.body.User,
+            Value: req.body.Value,
+            Date: Date
+        }],
 
     });
 
@@ -52,20 +57,39 @@ auctionController.registerAuction = function (req, res, next) {
 auctionController.updateAuction = function (req, res, next) {
 
 
-    Auction.findByIdAndUpdate(req.body._id,{Status:req.body.Status},{new:true},function(err,act){
-        if(err){
+    Auction.findByIdAndUpdate(req.body._id, {
+        Status: req.body.Status
+    }, {
+        new: true
+    }, function (err, act) {
+        if (err) {
             next(err);
-        }else{
-              act.save(err => {
-                  if (err) {
-                      next(err);
-                  } else {
-                      res.json(act);
-                  }
-              });
+        } else {
+            act.save(err => {
+                if (err) {
+                    next(err);
+                } else {
+                    res.json(act);
+                }
+            });
         }
     })
 };
+
+auctionController.deleteAuction = function (req, res, next) {
+
+    Auction.findByIdAndRemove(req.body._id, function (err, act) {
+        if (err) {
+            next(err);
+        } else {
+
+            res.json(act);
+        }
+    });
+}
+
+
+
 
 auctionController.findByTitle = function (title, callback) {
     const query = {
@@ -87,4 +111,49 @@ auctionController.getAuction = function (req, res, next) {
             }
         });
 }
+
+auctionController.getAuctionActive = function (req, res, next) {
+    Auction.find({"Status":{"$regex":"Active"}},
+        function (err, act) {
+            if (err) {
+                next(err);
+            } else {
+                res.json(act);
+            }
+        });
+}
+/*
+
+*****
+A tentar ...
+****
+
+auctionController.createBid = function (req, res, next) {
+
+      Auction.findByIdAndUpdate(req.body._id, {Bids:{
+          $push:{Bids:{$each:[{User:req.body.user,value:req.body.Value,date:Date}]}}
+      }}, {
+          new: true
+      }, function (err, act) {
+          if (err) {
+              next(err);
+          } else {
+              act.save(err => {
+                  if (err) {
+                      next(err);
+                  } else {
+                      res.json(act);
+                  }
+              });
+          }
+      })
+}*/
+
+auctionController.getNumberofBids = function () {
+
+}
+
+
+
+
 module.exports = auctionController;

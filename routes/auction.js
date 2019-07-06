@@ -1,11 +1,13 @@
-var express =require('express');
-var router=express.Router();
+var express = require('express');
+var router = express.Router();
 
-var auctionController =require('../controllers/auctionController');
+var auctionController = require('../controllers/auctionController');
 
-router.post("/register",auctionController.registerAuction);
-router.put("/list", auctionController.updateAuction);
-router.get("/get",auctionController.getAuction);
+router.post("/register", auctionController.registerAuction);
+router.put("/update", auctionController.updateAuction);
+router.delete("/delete", auctionController.deleteAuction);
+router.get("/get", auctionController.getAuction);
+router.get("/getActive", auctionController.getAuctionActive);
+//router.post("/create", auctionController.createBid);
 
-
-module.exports =router;
+module.exports = router;
