@@ -29,7 +29,7 @@ auctionController.registerAuction = function (req, res, next) {
         Bids: [{
             User: req.body.User,
             Value: req.body.Value,
-            Date: Date
+            Date:  new Date()
         }],
 
     });
@@ -122,16 +122,34 @@ auctionController.getAuctionActive = function (req, res, next) {
             }
         });
 }
-/*
 
-*****
-A tentar ...
-****
+auctionController.makeBid = (req, res, next) => {
+    console.log(req.body.Value);
+    
+    Auction.updateOne({_id : req.body._id}, {
+        $push: {
+            Bids: {
+                User: req.body.User,
+                Value: req.body.Value,
+                Date: new Date()
+            }
+        }
+    }, (err, act) => {
+        if (err) {
+            return err;
+        } else {
+            res.json(act);
+        }
+    });
+};
+
+
+
 
 auctionController.createBid = function (req, res, next) {
 
       Auction.findByIdAndUpdate(req.body._id, {Bids:{
-          $push:{Bids:{$each:[{User:req.body.user,value:req.body.Value,date:Date}]}}
+          $push:{Bids:{$each:[{User:req.body.User,value:req.body.Value,date:Date}]}}
       }}, {
           new: true
       }, function (err, act) {
@@ -147,7 +165,7 @@ auctionController.createBid = function (req, res, next) {
               });
           }
       })
-}*/
+}
 
 auctionController.getNumberofBids = function () {
 

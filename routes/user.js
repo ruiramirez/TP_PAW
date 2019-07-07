@@ -7,10 +7,13 @@ var config = require("../config/database");
 
 //Register
 router.post("/register", userController.registerUser);
+router.get("/list", userController.getAllUsers);
+router.delete("/delete", userController.deleteUser);
+router.put("/update", userController.updateUser);
 
 //Authenticate
 router.post("/authenticate", (req, res, next) => {
-
+ 
   var username = req.body.Username;
   var password = req.body.Password;
 

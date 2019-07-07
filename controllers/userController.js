@@ -53,6 +53,40 @@ userController.registerUser = function(req, res, next) {
   );
 };
 
+userController.deleteUser = (req, res, next) => {
+  User.findByIdAndRemove(req.body._id, (err, user) => {
+    if (err) {
+      next(err);
+    } else {
+      res.json(user);
+    }
+  });
+};
+console.log("");
+userController.updateUser = (req, res, next) => {
+  var query = '{ "' + req.body.Field + '" : "' + req.body.Value + '" }';
+  var jQuery = JSON.parse(query);
+  
+  //Transforma query em JSON object e dá update do field especificado
+  User.findByIdAndUpdate(req.body._id, 
+      jQuery, 
+      {
+    new: true
+  }, (err, user) => {
+    if (err) {
+      next(err);
+    } else {
+      user.save(err => {
+        if (err) {
+          next(err);
+        } else {
+          res.json(user);
+        }
+      });
+    }
+  });
+};
+
 //todos os users
 userController.getAllUsers = function(req, res, next) {
   User.find({}, (err, users) => {
