@@ -26,12 +26,7 @@ auctionController.registerAuction = function (req, res, next) {
         FinalValue: req.body.FinalValue,
         User: req.body.User,
         Status: "Pending",
-        Bids: [{
-            User: req.body.User,
-            Value: req.body.Value,
-            Date:  new Date()
-        }],
-
+        Bids: req.body.Bids
     });
 
     Auction.find({
@@ -49,7 +44,6 @@ auctionController.registerAuction = function (req, res, next) {
                 });
             }
         }
-
     )
 }
 
@@ -125,7 +119,7 @@ auctionController.getAuctionActive = function (req, res, next) {
 
 auctionController.makeBid = (req, res, next) => {
     console.log(req.body.Value);
-    
+
     Auction.updateOne({_id : req.body._id}, {
         $push: {
             Bids: {
@@ -145,7 +139,7 @@ auctionController.makeBid = (req, res, next) => {
 
 
 
-
+/** 
 auctionController.createBid = function (req, res, next) {
 
       Auction.findByIdAndUpdate(req.body._id, {Bids:{
@@ -166,7 +160,7 @@ auctionController.createBid = function (req, res, next) {
           }
       })
 }
-
+*/
 auctionController.getNumberofBids = function () {
 
 }

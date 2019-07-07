@@ -62,7 +62,7 @@ userController.deleteUser = (req, res, next) => {
     }
   });
 };
-console.log("");
+
 userController.updateUser = (req, res, next) => {
   var query = '{ "' + req.body.Field + '" : "' + req.body.Value + '" }';
   var jQuery = JSON.parse(query);
