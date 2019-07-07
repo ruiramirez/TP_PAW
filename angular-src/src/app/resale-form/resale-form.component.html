@@ -10,27 +10,41 @@
 
           <div class="form-row mb-4">
             <div class="col">
-              <input type="text" required [(ngModel)]="Title" name="Title" #name="ngModel" 
-              id="defaultRegisterFormTitle" class="form-control" placeholder="Title">
+              <input type="text" required [(ngModel)]="Title" name="Title" #name="ngModel" id="defaultRegisterFormTitle"
+                class="form-control" placeholder="Title">
             </div>
             <div class="col">
-              <input type="text" required [(ngModel)]="Value" name="Value" #name="ngModel" id="defaultRegisterFormLastName" class="form-control" placeholder="Value">
+              <input type="text" required [(ngModel)]="Value" name="Value" #name="ngModel" id="defaultRegisterFormValue"
+                class="form-control" placeholder="Value">
             </div>
           </div>
+          <div class="form-row mb-4">
+            <div class="col">
+              <input type="text" required [(ngModel)]="Brand" name="Brand" #name="ngModel" id="defaultRegisterFormBrand"
+                class="form-control" placeholder="Brand">
+            </div>
+            <div class="col">
+              <input type="text" required [(ngModel)]="Model" name="Model" #name="ngModel" id="defaultRegisterFormModel"
+                class="form-control" placeholder="Model">
+            </div>
+          </div>
+
 
 
           <div class="form-group">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Description</textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+              maxlength="75">Description</textarea>
           </div>
+
           <input type="file" [disabled]="!registerForm.form.valid" (change)="onFileChanged($event)">
           <br>
           <br>
           <button mdbBtn color="info" class="btn btn-success" type="submit"
             [disabled]="!registerForm.form.valid">Register</button>
         </form>
-      
+
       </div>
-      
+
     </div>
   </div>
 </div>

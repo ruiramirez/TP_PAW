@@ -121,26 +121,51 @@ auctionController.getAuctionActive = function (req, res, next) {
             }
         });
 }
-/*
 
-*****
-A tentar ...
-****
-*/
+auctionController.makeBid = (req, res, next) => {
+    console.log(req.body.Value);
+
+    Auction.updateOne({
+        _id: req.body._id
+    }, {
+        $push: {
+            Bids: {
+                User: req.body.User,
+                Value: req.body.Value,
+                Date: new Date()
+            }
+        }
+    }, (err, act) => {
+        if (err) {
+            return err;
+        } else {
+            res.json(act);
+        }
+    });
+};
+
+
+
+
 auctionController.createBid = function (req, res, next) {
 
     Auction.findByIdAndUpdate(req.body._id, {
-
-        $push: {
-            Bids: {
-                $each: [{
-                    User: req.body.user,
-                    value: req.body.Value,
-
-                }], $slice: -150
-            },
+        Bids: {
+            $push: {
+                Bids: {
+                    $each: [{
+                        User: req.body.User,
+                        value: req.body.Value,
+                        date: Date
+                    }],
+                    $sort: {
+                        Value: -1
+                    }
+                }
+            }
         }
-
+    }, {
+        new: true
     }, function (err, act) {
         if (err) {
             next(err);
@@ -156,32 +181,62 @@ auctionController.createBid = function (req, res, next) {
     })
 }
 
-auctionController.getSpecificAuctionBids = function () {
-Auction.aggregate([
-    {
-        $unwind: "$Bids"
-    }, {
-        $match: {
-            "_id": req.body._id
+
+auctionController.getSpecificAuctionBids = function (req, res, next) {
+    Auction.aggregate([{
+                $unwind: "$Bids"
+            }, {
+                $match: {
+                    "Title": req.body.Title
+                }
+            }, {
+                $project: {
+                    "Title": 1,
+                    "Bids.User": 1,
+                    "Bids.Value": 1
+                }
+            }
+
+        ],
+        function (err, bid) {
+            if (err) {
+                next(err);
+            } else {
+                res.json(bid);
+            }
         }
-    },{
-        $project:{"Title":1,
-        "Bids.User":1,
-        "Bids.Value":1
-    }
-    }
-
-],
-function (err, bid) {
-    if (err) {
-        next(err);
-    } else {
-        res.json(bid);
-    }
-}
-);
+    );
 }
 
+auctionController.getNumberOfBids = function (req, res, next) {
+    Auction.aggregate([{
+                $unwind: "$Bids"
+
+            }, {
+                $match: {
+                    "Title": req.body.Title
+                }
+            }, {
+                $group: {
+                    "_id": "NumberOfBids",
+                    total: {
+                        $sum: 1
+
+
+                    }
+                }
+            }
+
+        ],
+        function (err, bid) {
+            if (err) {
+                next(err);
+            } else {
+                res.json(bid);
+            }
+        }
+    );
+}
 
 
 

@@ -43,7 +43,7 @@ var auctionSchema = new Schema({
     default: Date}*/
 }],
   Status: {
-    type: String,
+    type: String, 
     required: true,
     default: "Pending"
   }
