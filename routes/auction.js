@@ -8,6 +8,8 @@ router.put("/update", auctionController.updateAuction);
 router.delete("/delete", auctionController.deleteAuction);
 router.get("/get", auctionController.getAuction);
 router.get("/getActive", auctionController.getAuctionActive);
-//router.post("/create", auctionController.createBid);
+router.post("/create", auctionController.createBid);
+router.get("/specificAuction", auctionController.createBid);
+
 
 module.exports = router;
