@@ -133,6 +133,9 @@ auctionController.makeBid = (req, res, next) => {
                 User: req.body.User,
                 Value: req.body.Value,
                 Date: new Date()
+            },
+            $sort: {
+                Value: -1
             }
         }
     }, (err, act) => {
@@ -143,43 +146,6 @@ auctionController.makeBid = (req, res, next) => {
         }
     });
 };
-
-
-
-
-auctionController.createBid = function (req, res, next) {
-
-    Auction.findByIdAndUpdate(req.body._id, {
-        Bids: {
-            $push: {
-                Bids: {
-                    $each: [{
-                        User: req.body.User,
-                        value: req.body.Value,
-                        date: Date
-                    }],
-                    $sort: {
-                        Value: -1
-                    }
-                }
-            }
-        }
-    }, {
-        new: true
-    }, function (err, act) {
-        if (err) {
-            next(err);
-        } else {
-            act.save(err => {
-                if (err) {
-                    next(err);
-                } else {
-                    res.json(act);
-                }
-            });
-        }
-    })
-}
 
 
 auctionController.getSpecificAuctionBids = function (req, res, next) {

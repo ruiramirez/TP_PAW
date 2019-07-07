@@ -10,10 +10,10 @@ export class AuctionService {
 
   constructor(private http: HttpClient) { }
 
-  getActions(): Observable<Auctions[]> {
-    return this.http.get<Auctions[]>('http://localhost:3000/tp_paw/auctions/get');
+  getAuctions(): Observable<Auctions[]> {
+    return this.http.get<Auctions[]>('http://localhost:3000/auction/get');
   }
-
+  
 
 }
 export interface Auctions {

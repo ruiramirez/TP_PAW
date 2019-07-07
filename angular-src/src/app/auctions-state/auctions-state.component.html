@@ -5,9 +5,9 @@
   <div class="col-md-3">
     <div class="card">
 
-      <div class="card-body cbody-100">
-        <h4 class="font-weight-bold">Phone #1</h4>
-        <p>Overview:</p>
+      <div *ngFor="let pilka of auctions" class="card-body cbody-100">
+        <h4 class="font-weight-bold">Phone #1: </h4>
+        <p>Overview:{{pilka.}}</p>
         <p>Current price:</p>
       </div>
       <div class="card-footer text-right">
