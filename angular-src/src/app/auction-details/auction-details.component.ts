@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auction } from '../interfaces/auction';
 import { user } from '../interfaces/user';
 import { AuctionService } from '../auction.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouteConfigLoadEnd } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { HttpUsersService } from '../services/http-users/http-users.service';
 
@@ -14,13 +14,10 @@ import { HttpUsersService } from '../services/http-users/http-users.service';
 export class AuctionDetailsComponent implements OnInit {
 
 	auction: Auction;
-	bidUser: user;
+	User: user;
 	token: any;
+	Value: number;
 
-	tmp = {
-		User: user,
-		Value: Number
-	}
 
 	constructor(private httpUserService: HttpUsersService, private auctionService: AuctionService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
@@ -28,6 +25,8 @@ export class AuctionDetailsComponent implements OnInit {
 		this.getAuction(this.activatedRoute.snapshot.params.id);
 		this.getTokenId();
 		this.getUser(this.token);
+		console.log(this.User);
+		console.log("fodeu");
 	}
 
 	getAuction(id: string) {
@@ -43,11 +42,46 @@ export class AuctionDetailsComponent implements OnInit {
 
 	getUser(id: string) {
 		this.httpUserService.getClientById(id).subscribe(data => {
-			this.bidUser = data;
-			console.log(this.bidUser);
-		})
+			console.log("em baixo");
+			console.log(data);
+			const user = {
+				Email: data.Email,
+				Password: data.Password,
+				Username: data.Username,
+				Name: data.Name,
+				AddressDetail: data.AddressDetail,
+				City: data.City,
+				PostalCode: data.PostalCode,
+				Country: data.Country,
+				UserType: data.UserType
+			};
+			this.User = user;
+
+		},
+			err => {
+				console.log(err);
+				return false;
+			});
 	}
 
+	onClickSubmit() {
 
+		const vl = this.Value;
+		const query = {
+			Auction: this.auction,
+			User: this.User,
+			Value: vl
+		}
+
+		if (vl > query.Auction.Bids[0].Value) {
+			this.httpUserService.makeBid(query).subscribe(data => {
+				console.log(data);
+			});
+		} else {
+
+			return false;
+		}
+
+	}
 
 }
