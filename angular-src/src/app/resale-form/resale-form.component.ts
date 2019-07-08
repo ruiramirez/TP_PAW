@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from'@angular/router';
+import { Auction} from '../interfaces/auction';
+
 
 @Component({
   selector: 'app-resale-form',
@@ -6,18 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resale-form.component.css']
 })
 export class ResaleFormComponent implements OnInit {
+	auctions =new Array<Auction>();
+	auction:Auction;
 
-  Title:string;
-  Value: Number;
   constructor() { }
 
   ngOnInit() {
   }
   onSubmit(){
-    const auctions={
-      Title:this.Title,
-      value:this.Value
-    }
+  
   }
 
 }
