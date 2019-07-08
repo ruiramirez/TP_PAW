@@ -1,34 +1,25 @@
 <h2>Current Auctions</h2>
 
 <div class="row">
-  <div *ngFor="let auction of auctions" class="col-md-3">
-    <div class="card">
-      <div class="card-header bg-card"
-        style="background-image: url(https://img.newatlas.com/2017-best-phones-1.jpg?auto=format%2Ccompress&ch=Width%2CDPR&fit=crop&h=347&q=60&rect=0%2C0%2C1799%2C1012&w=616&s=1e8ed4546396d8b8cfa89edfef64ecfb)">
-        <div class="badge badge-danger">Quase a terminar</div>
-      </div>
-      <div class="card-body cbody-100">
-        <h5 class="font-weight-bold">{{auction.Brand}} {{auction.Model}}</h5>
-        <p>Description: {{auction.Description}}</p>
-        <p>Current price: {{auction.FinalValue}} </p>
-        <!-- texto -->
-      </div>
-      <div class="card-footer ">
-        <!-- buttons -->
-        <button class="btn btn-sm ml-2 btn-outline-primary" routerLink="details/{{auction._id}}">Details</button>
+	<div *ngFor="let auction of auctions" class="col-md-3">
+		<div class="card">
+			<div class="card-header bg-card"
+				style="background-image: url(https://img.newatlas.com/2017-best-phones-1.jpg?auto=format%2Ccompress&ch=Width%2CDPR&fit=crop&h=347&q=60&rect=0%2C0%2C1799%2C1012&w=616&s=1e8ed4546396d8b8cfa89edfef64ecfb)">
+				<div class="badge badge-danger">Quase a terminar</div>
+			</div>
+			<div class="card-body cbody-100">
+				<h5 class="font-weight-bold">{{auction.Brand}} {{auction.Model}}</h5>
+				<p>Description: {{auction.Description}}</p>
+				<p>Current price: {{auction.FinalValue}} </p>
+				<!-- texto -->
+			</div>
+			<div class="card-footer ">
+				<!-- buttons -->
+				<button class="btn btn-sm ml-2 btn-outline-primary"
+					routerLink="details/{{auction._id}}">Details</button>
 
-        
-
-        <!-- <select class="btn btn-sm ml-2 btn-dark">
-          <option selected>Finished</option>
-          <option value="1">Sent</option>
-          <option value="2">Received</option>
-          <option value="3">Evaluated</option>
-          <option value="4">Refused</option>
-
-        </select> -->
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3"></div>
 </div>

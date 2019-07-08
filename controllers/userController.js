@@ -40,7 +40,7 @@ userController.registerUser = function (req, res, next) {
 		{ $or: [{ Email: user.Email }, { Username: user.Username }] },
 		(err, userExists) => {
 			if (userExists.length != 0) {
-				res.send("Username already exists!");
+				res.send("Username already exists or email already exists!");
 			} else {
 				bcrypt.genSalt(10, (err, salt) => {
 					bcrypt.hash(user.Password, salt, (err, hash) => {
