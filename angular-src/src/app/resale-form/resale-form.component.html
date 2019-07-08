@@ -28,15 +28,13 @@
                 class="form-control" placeholder="Model">
             </div>
           </div>
-
-
-
-          <div class="form-group">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-              maxlength="75">Description</textarea>
+          <div class="col">
+            <input type="text" required [(ngModel)]="PathURL" name="PathURL" #name="ngModel"
+              id="defaultRegisterFormPathURL"
+              class="form-control" placeholder="Path://URL">
           </div>
 
-          <input type="file" [disabled]="!registerForm.form.valid" (change)="onFileChanged($event)">
+
           <br>
           <br>
           <button mdbBtn color="info" class="btn btn-success" type="submit"

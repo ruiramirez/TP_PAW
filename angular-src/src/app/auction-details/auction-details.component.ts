@@ -25,8 +25,6 @@ export class AuctionDetailsComponent implements OnInit {
 		this.getAuction(this.activatedRoute.snapshot.params.id);
 		this.getTokenId();
 		this.getUser(this.token);
-		console.log(this.User);
-		console.log("fodeu");
 	}
 
 	getAuction(id: string) {
