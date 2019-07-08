@@ -10,6 +10,7 @@ import { Auction } from '../interfaces/auction';
 })
 export class AuctionsComponent implements OnInit {
   auctions = new Array<Auction>();
+  auction: Auction;
 
   constructor(private auctionService: AuctionService, private router: Router) { }
 

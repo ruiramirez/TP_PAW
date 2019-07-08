@@ -1,34 +1,94 @@
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-4">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Heading
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<a class="btn" href="#">View details »</a>
-			</p>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-card" [ngStyle]="{'background-image': 'url(' + auction.Image + ')'}">
+          <div class="badge badge-dark">
+            <fa name="calendar"></fa>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-dark">
+          <h6 class="font-weight-bold text-white">
+            <fa name="mobile"></fa> {{ auction.Brand + ' ' + auction.Model }}
+          </h6>
+        </div>
+        <div class="card-body">
+          <span class="font-weight-bold">Description:</span>
+          <p class="font-italic">
+            <fa name="quote-left" class="font-weight-normal"></fa> {{ auction.Description }} <fa name="quote-right"
+              class="font-weight-normal"></fa>
+          </p>
+        </div>
+        <div class="card-footer">
+          <form action="" method="POST">
+            <div class="form-group">
+              <div class="font-weight bold h5">{{ auction.FinalValue }} €</div>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">€</span>
+                </div>
+                <input  type="text" class="form-control" placeholder="Enter your max. bid" aria-label="bid"
+                  aria-describedby="basic-addon1">
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-block btn-rounded btn-primary">
+                <fa name="mouse-pointer"></fa> Submit Bid
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-dark">
+          <h6 class="font-weight-bold text-white">
+            <fa name="user-circle"></fa> User
+          </h6>
+        </div>
+        <div class="card-body text-center">
+          <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" alt="User"
+            class="img-responsive" width="80px">
+
+          <h4 class="mt-2 font-weight-bold">{{ auction.User.Name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="font-weight-bold">Biddings</h5>
+        </div>
+
+        <div class="card-body">
+          <div *ngFor="let item of auction.Bids">
+            <div class="row justify-content-between align-items-center text-left border-bottom pb-2 mb-1">
+              <div class="col-md-4 justify-content-between align-items-center text-left">
+                  <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" alt="User"
+                  class="img-responsive" width="50px">
+
+                  <span class=" ml-1 font-weight-bold h6">{{ item.User.Name }}</span>
+              </div>
+              <div class="col-md-6 text-center">
+                <fa name="calendar"></fa>
+              </div>
+              <div class="col-md-2 text-right">
+                  <span class="font-weight-bold h6">{{ item.Value }} €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

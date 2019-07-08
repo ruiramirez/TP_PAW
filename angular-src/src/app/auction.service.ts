@@ -15,5 +15,8 @@ export class AuctionService {
     return this.http.get<Auction[]>('http://localhost:3000/auction/get');
   }
 
+  getAuction(id: String): Observable<Auction> {
+    return this.http.get<Auction>('http://localhost:3000/auction/show/' + id);
+  }
 
 }

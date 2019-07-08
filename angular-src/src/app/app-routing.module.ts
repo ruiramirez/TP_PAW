@@ -10,19 +10,18 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuctionDetailsComponent } from './auction-details/auction-details.component';
 
 const routes: Routes = [
-  { path: '', component: AuctionsComponent },
-  { path: 'app-login', component: LoginComponent },
-  { path: 'app-register', component: RegisterComponent },
-  { path: 'app-home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'app-auctions', component: AuctionsComponent },
-  { path: 'details', component: AuctionDetailsComponent},
-  { path: 'app-auctions-state', component: AuctionsStateComponent },
-  { path: 'app-home/app-resale-form', component: ResaleFormComponent },
-  { path: 'app-home/app-auctions-state', component: AuctionsStateComponent}
+	{ path: '', component: AuctionsComponent },
+	{ path: 'app-login', component: LoginComponent },
+	{ path: 'app-register', component: RegisterComponent },
+	{ path: 'app-home', component: HomeComponent, canActivate: [AuthGuardService] },
+	{ path: 'details/:id', component: AuctionDetailsComponent },
+	{ path: 'app-auctions-state', component: AuctionsStateComponent },
+	{ path: 'app-home/app-resale-form', component: ResaleFormComponent },
+	{ path: 'app-home/app-auctions-state', component: AuctionsStateComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

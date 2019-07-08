@@ -1,28 +1,29 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link active">RevendeTele</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="app-auctions">Auctions </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="app-home">Home</a>
-      </li>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link active">RevendeTele</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="">Auctions </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="app-home">Home</a>
+			</li>
 
 
-      <div class="drop">
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button *ngIf="!this.isLoggedIn()" routerLink="app-login" routerLinkActive="active" ngbDropdownItem>Login</button>
-            <button *ngIf="!this.isLoggedIn()" routerLink="app-register" ngbDropdownItem>Register</button>
-            <button *ngIf="this.isLoggedIn()" (click)="onLogoutClick()" ngbDropdownItem>Logout</button>
-          </div>
-        </div>
-      </div>
+			<div class="drop">
+				<div ngbDropdown class="d-inline-block">
+					<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button>
+					<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+						<button *ngIf="!this.isLoggedIn()" routerLink="app-login" routerLinkActive="active"
+							ngbDropdownItem>Login</button>
+						<button *ngIf="!this.isLoggedIn()" routerLink="app-register" ngbDropdownItem>Register</button>
+						<button *ngIf="this.isLoggedIn()" (click)="onLogoutClick()" ngbDropdownItem>Logout</button>
+					</div>
+				</div>
+			</div>
 
-    </ul>
-  </div>
+		</ul>
+	</div>
 </nav>

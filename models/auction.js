@@ -32,6 +32,8 @@ var auctionSchema = new Schema({
     type: Number,
    // required: true
   },
+  StartDate: Date,
+  EndDate: Date,
   User: {
     type: userSchema,
     required: true

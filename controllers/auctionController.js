@@ -6,6 +6,15 @@ var config = require('../config/database');
 
 var auctionController = {};
 
+auctionController.findById = (req, res, next) => {
+    Auction.findById({_id: req.params.id}, (err, act) => {
+        if (err) {
+            next(err);
+        } else {
+            res.json(act);
+        }
+    });
+};
 
 auctionController.getByAuctions = function (auction, callback) {
     const query = {

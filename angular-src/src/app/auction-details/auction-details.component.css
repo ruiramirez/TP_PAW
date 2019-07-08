@@ -1,4 +1,11 @@
-.col-md-4 {
-  outline-style: dotted
+.bg-card {
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 100%;
 }
 
+.cbody-100 {
+  height: 150px;
+}

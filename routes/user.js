@@ -10,6 +10,7 @@ router.post("/register", userController.registerUser);
 router.get("/list", userController.getAllUsers);
 router.delete("/delete", userController.deleteUser);
 router.put("/update", userController.updateUser);
+router.get("/get/:id", userController.findUser);
 
 //Authenticate
 router.post("/authenticate", (req, res, next) => {

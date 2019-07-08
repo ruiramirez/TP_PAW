@@ -1,31 +1,40 @@
 <h2>Auctions State</h2>
 
 <div class="row">
-  <div class="col-md-3">
-    <div *ngFor="let auction of auctions" class="card">
-
-      <div class="card-body cbody-100">
-        <h4 class="font-weight-bold">Phone #1: </h4>
-        <p>Overview:</p>
-        <p>Current price:</p>
-      </div>
-      <div class="card-footer text-right">
-        <h5>State:</h5>
-      </div>
-
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card">
-
-      <div class="card-body cbody-100">
-        <h4 class="font-weight-bold">Phone #2</h4>
-        <p>Overview:</p>
-        <p>Current price:</p>
-      </div>
-      <div class="card-footer text-right">
-        <h5>State:</h5>
-      </div>
-
-    </div>
-  </div>
+	<div class="col-md-4 mb-2" *ngFor="let auction of auctions">
+		<div class="card">
+			<div class="card-header bg-dark text-white">
+				<div class="h6 font-weight-bold">{{ auction.Brand + auction.Model }}</div>
+			</div>
+			<div class="card-body">
+				<div class="font-weight-bold">
+					Status:
+					<span class="font-weight-light d-flex">
+						<div class="" *ngIf="auction.Status === 'Pending'">
+							<fa name="circle" class="text-danger mr-2"></fa>
+						</div>
+						{{ auction.Status }}
+					</span>
+				</div>
+			</div>
+			<div class="card-footer text-right">
+				<div ngbDropdown class="d-inline-block">
+					<button class="btn btn-dark btn-sm ml-2" id="dropdownBasic1" ngbDropdownToggle>
+						<fa name="edit" class=""></fa> Change Status
+					</button>
+					<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+						<a href="/auction/id/reprovado" ngbDropdownItem>
+							<fa name="circle" class="text-danger"></fa> Reprovado
+						</a>
+						<a ngbDropdownItem>
+							<fa name="paper-plane" class="text-primary"></fa> Sent
+						</a>
+						<a ngbDropdownItem>
+							<fa name="check-circle" class="text-success"></fa> Finished
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
