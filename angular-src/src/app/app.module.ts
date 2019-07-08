@@ -24,6 +24,7 @@ import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuctionDetailsComponent } from './auction-details/auction-details.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -46,8 +47,9 @@ import { AuctionDetailsComponent } from './auction-details/auction-details.compo
     MDBBootstrapModule.forRoot(),
     ChartsModule,
     JwtModule,
-    RouterModule
-],
+    RouterModule,
+    AngularFontAwesomeModule
+  ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
