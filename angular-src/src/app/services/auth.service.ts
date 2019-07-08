@@ -51,10 +51,12 @@ export class AuthService {
 
   loadToken() {
     const token = localStorage.getItem("id_token");
-    return this.authToken = token;
+    this.authToken = token;
   }
 
   loggedIn() {
+
+    this.loadToken();
 
     if (!localStorage.getItem("id_token")) {
       return false;
@@ -64,7 +66,7 @@ export class AuthService {
 
     const current = new Date();
 
-    const expirationDate = helper.getTokenExpirationDate(this.loadToken());
+    const expirationDate = helper.getTokenExpirationDate(this.authToken);
 
     return current.getTime() < expirationDate.getTime();
   }

@@ -23,6 +23,7 @@ import { AuctionsStateComponent } from './auctions-state/auctions-state.componen
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuctionDetailsComponent } from './auction-details/auction-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     AuctionsComponent,
     HomeComponent,
     ResaleFormComponent,
-    AuctionsStateComponent
+    AuctionsStateComponent,
+    AuctionDetailsComponent
   ],
   imports: [
     BrowserModule,

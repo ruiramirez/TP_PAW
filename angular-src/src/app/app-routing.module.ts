@@ -7,6 +7,7 @@ import { ResaleFormComponent } from './resale-form/resale-form.component';
 import { AuctionsComponent } from './auctions/auctions.component';
 import { AuctionsStateComponent } from './auctions-state/auctions-state.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuctionDetailsComponent } from './auction-details/auction-details.component';
 
 const routes: Routes = [
   { path: '', component: AuctionsComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'app-register', component: RegisterComponent },
   { path: 'app-home', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'app-auctions', component: AuctionsComponent },
+  { path: 'details', component: AuctionDetailsComponent},
   { path: 'app-auctions-state', component: AuctionsStateComponent },
   { path: 'app-home/app-resale-form', component: ResaleFormComponent },
   { path: 'app-home/app-auctions-state', component: AuctionsStateComponent}

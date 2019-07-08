@@ -39,8 +39,7 @@ var auctionSchema = new Schema({
   Bids: [{
     User: userSchema,
     Value: Number,
-    /*Date: {Type:Date,
-    default: Date}*/
+    Date: Date,
 }],
   Status: {
     type: String, 

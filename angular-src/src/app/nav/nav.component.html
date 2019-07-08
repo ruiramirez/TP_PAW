@@ -16,9 +16,9 @@
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button routerLink="app-login" routerLinkActive="active" ngbDropdownItem>Login</button>
-            <button routerLink="app-register" ngbDropdownItem>Register</button>
-            <button (click)="onLogoutClick()" ngbDropdownItem>Logout</button>
+            <button *ngIf="!this.isLoggedIn()" routerLink="app-login" routerLinkActive="active" ngbDropdownItem>Login</button>
+            <button *ngIf="!this.isLoggedIn()" routerLink="app-register" ngbDropdownItem>Register</button>
+            <button *ngIf="this.isLoggedIn()" (click)="onLogoutClick()" ngbDropdownItem>Logout</button>
           </div>
         </div>
       </div>

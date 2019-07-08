@@ -12,7 +12,11 @@ export class NavComponent implements OnInit {
   constructor(private authservice: AuthService, private router: Router) {}
 
   ngOnInit() {
-    
+
+  }
+
+  isLoggedIn() {
+    return this.authservice.loggedIn();
   }
 
   onLogoutClick() {
