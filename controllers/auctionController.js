@@ -7,7 +7,9 @@ var config = require('../config/database');
 var auctionController = {};
 
 auctionController.findById = (req, res, next) => {
-	Auction.findById({ _id: req.params.id }, (err, act) => {
+	Auction.findById({
+		_id: req.params.id
+	}, (err, act) => {
 		if (err) {
 			next(err);
 		} else {
@@ -24,6 +26,13 @@ auctionController.getByAuctions = function (auction, callback) {
 };
 
 auctionController.registerAuction = function (req, res, next) {
+	function addDays() {
+		var result = new Date();
+		result.setDate(result.getDate() + 10);
+		return result;
+
+	}
+
 	var auction = new Auction({
 		Title: req.body.Title,
 		Description: req.body.Description,
@@ -35,7 +44,12 @@ auctionController.registerAuction = function (req, res, next) {
 		FinalValue: req.body.FinalValue,
 		User: req.body.User,
 		Status: "Pending",
-		Bids: req.body.Bids
+		Bids: req.body.Bids,
+		StartDate: new Date(),
+		EndDate: addDays()
+
+
+
 	});
 
 	Auction.find({
@@ -52,8 +66,7 @@ auctionController.registerAuction = function (req, res, next) {
 				}
 			});
 		}
-	}
-	)
+	})
 }
 
 
@@ -63,20 +76,20 @@ auctionController.updateAuction = function (req, res, next) {
 	Auction.findByIdAndUpdate(req.body._id, {
 		Status: req.body.Status
 	}, {
-			new: true
-		}, function (err, act) {
-			if (err) {
-				next(err);
-			} else {
-				act.save(err => {
-					if (err) {
-						next(err);
-					} else {
-						res.json(act);
-					}
-				});
-			}
-		})
+		new: true
+	}, function (err, act) {
+		if (err) {
+			next(err);
+		} else {
+			act.save(err => {
+				if (err) {
+					next(err);
+				} else {
+					res.json(act);
+				}
+			});
+		}
+	})
 };
 
 auctionController.deleteAuction = function (req, res, next) {
@@ -117,10 +130,10 @@ auctionController.getAuction = function (req, res, next) {
 
 auctionController.getAuctionActive = function (req, res, next) {
 	Auction.find({
-		"Status": {
-			"$regex": "Active"
-		}
-	},
+			"Status": {
+				"$regex": "Active"
+			}
+		},
 		function (err, act) {
 			if (err) {
 				next(err);
@@ -132,7 +145,9 @@ auctionController.getAuctionActive = function (req, res, next) {
 
 auctionController.makeBid = (req, res, next) => {
 
-	Auction.updateOne({ _id: req.body.Auction._id }, {
+	Auction.updateOne({
+		_id: req.body.Auction._id
+	}, {
 		$push: {
 			Bids: {
 				User: req.body.User,
@@ -146,9 +161,16 @@ auctionController.makeBid = (req, res, next) => {
 			return err;
 		} else {
 			console.log("não houve erro");
-			Auction.updateOne({ _id: req.body.Auction._id }, {
+			Auction.updateOne({
+				_id: req.body.Auction._id
+			}, {
 				$push: {
-					Bids: { $each: [], $sort: { Value: -1 } },
+					Bids: {
+						$each: [],
+						$sort: {
+							Value: -1
+						}
+					},
 				},
 			}, (err, act) => {
 				if (err) {
@@ -167,24 +189,24 @@ auctionController.makeBid = (req, res, next) => {
 
 auctionController.getSpecificAuctionBids = function (req, res, next) {
 	Auction.aggregate([{
-		$unwind: "$Bids"
-	}, {
-		$match: {
-			"Title": req.body.Title
-		}
-	}, {
-		$project: {
-			"Title": 1,
-			"Bids.User": 1,
-			"Bids.Value": 1
-		}
-	}
-	],
+			$unwind: "$Bids"
+		}, {
+			$match: {
+				"Title": req.body.Title
+			}
+		}, {
+			$project: {
+				"Title": 1,
+				"Bids.User": 1,
+				"Bids.Value": 1
+			}
+		}],
 		function (err, bid) {
 			if (err) {
 				next(err);
 			} else {
 				res.json(bid);
+
 			}
 		}
 	);
@@ -192,24 +214,17 @@ auctionController.getSpecificAuctionBids = function (req, res, next) {
 
 auctionController.getNumberOfBids = function (req, res, next) {
 	Auction.aggregate([{
-		$unwind: "$Bids"
-
-	}, {
-		$match: {
-			"Title": req.body.Title
-		}
-	}, {
-		$group: {
-			"_id": "NumberOfBids",
-			total: {
-				$sum: 1
-
-
+				$unwind: "$Bids"
+			}, {
+				$group: {
+					"_id": "NumberOfBids",
+					total: {
+						$sum: 1
+					}
+				}
 			}
-		}
-	}
 
-	],
+		],
 		function (err, bid) {
 			if (err) {
 				next(err);
