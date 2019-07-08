@@ -1,13 +1,12 @@
-
 <h2>Auctions State</h2>
 
 <div class="row">
   <div class="col-md-3">
-    <div class="card">
+    <div *ngFor="let auction of auctions" class="card">
 
-      <div *ngFor="let pilka of auctions" class="card-body cbody-100">
+      <div class="card-body cbody-100">
         <h4 class="font-weight-bold">Phone #1: </h4>
-        <p>Overview:{{pilka.}}</p>
+        <p>Overview:</p>
         <p>Current price:</p>
       </div>
       <div class="card-footer text-right">

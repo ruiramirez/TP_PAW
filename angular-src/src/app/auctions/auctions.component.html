@@ -15,16 +15,30 @@
       </div>
       <div class="card-footer ">
         <!-- buttons -->
-        <button class="btn btn-outline-primary ">Bid</button>
-        <button class="btn btn-outline-primary">Details</button>
-        <select class="btn btn-outline-primary">
+        <button class="btn btn-sm btn-outline-primary ">Bid</button>
+        <button class="btn btn-sm ml-2 btn-outline-primary">Details</button>
+
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-dark btn-sm ml-2" id="dropdownBasic1" ngbDropdownToggle>Status</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <a href="/auction/id/reprovado" ngbDropdownItem>
+              <fa name="circle" class="text-danger"></fa> Reprovado
+            </a>
+            <button ngbDropdownItem>
+              <fa name="paper-plane" class="text-primary"></fa> Sent
+            </button>
+            <button ngbDropdownItem><fa name="check-circle" class="text-success"></fa> Finished</button>
+          </div>
+        </div>
+
+        <!-- <select class="btn btn-sm ml-2 btn-dark">
           <option selected>Finished</option>
           <option value="1">Sent</option>
           <option value="2">Receiced</option>
           <option value="3">Evaluated</option>
           <option value="4">Refused</option>
 
-        </select>
+        </select> -->
       </div>
     </div>
   </div>

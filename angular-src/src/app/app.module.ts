@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -25,28 +27,29 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    LoginComponent,
-    RegisterComponent,
-    AuctionsComponent,
-    HomeComponent,
-    ResaleFormComponent,
-    AuctionsStateComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    NgbModule,
-    MDBBootstrapModule.forRoot(),
-    ChartsModule,
-    JwtModule,
-    RouterModule
-],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService, AuthGuardService],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NavComponent,
+		LoginComponent,
+		RegisterComponent,
+		AuctionsComponent,
+		HomeComponent,
+		ResaleFormComponent,
+		AuctionsStateComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		FormsModule,
+		AppRoutingModule,
+		NgbModule,
+		AngularFontAwesomeModule,
+		MDBBootstrapModule.forRoot(),
+		ChartsModule,
+		JwtModule,
+		RouterModule
+	],
+	providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService, AuthGuardService],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
