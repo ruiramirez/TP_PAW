@@ -10,7 +10,7 @@ export class HttpUsersService {
 
   constructor(private http: HttpClient) { }
 
-  getClientByUsername(): Observable<user> {
-	  return this.http.get<user>('http://localhost:3000/user/get');
+  getClientById(id: String): Observable<user> {
+	  return this.http.get<user>('http://localhost:3000/user/get/' + id);
   }
 }
