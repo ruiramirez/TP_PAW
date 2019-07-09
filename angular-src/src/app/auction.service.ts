@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Auction } from './interfaces/auction';
 
@@ -7,7 +7,7 @@ import { Auction } from './interfaces/auction';
   providedIn: 'root'
 })
 export class AuctionService {
-
+Auction:any;
 
   constructor(private http: HttpClient) { }
 
@@ -19,4 +19,18 @@ export class AuctionService {
     return this.http.get<Auction>('http://localhost:3000/auction/show/' + id);
   }
 
+  
+	registerAuction(auct: Auction) {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "my-auth-token"
+			})
+		};
+		return this.http.post(
+			"http://localhost:3000/auction/register",
+			auct,
+			httpOptions
+		);
+	}
 }

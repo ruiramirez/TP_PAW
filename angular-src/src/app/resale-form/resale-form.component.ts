@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from'@angular/router';
 import { Auction} from '../interfaces/auction';
-
+import {user} from '../interfaces/user'
+import { AuctionService } from '../auction.service';
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: 'app-resale-form',
@@ -9,15 +11,67 @@ import { Auction} from '../interfaces/auction';
   styleUrls: ['./resale-form.component.css']
 })
 export class ResaleFormComponent implements OnInit {
-	auctions =new Array<Auction>();
-	auction:Auction;
 
-  constructor() { }
+	Title: string;
+	Description: string;
+	Brand: string;
+	Model: string;
+	Image: string;
+	userValue: number;
+	PropValue: number;
+	FinalValue:number; 
+	User: user;
+Bids:{
+	User:user;
+	Value:Number;
+	Date:Date
+}
+	
 
-  ngOnInit() {
-  }
+	
+
+	constructor(private authService: AuthService,private auctionService: AuctionService, private router: Router) { }
+
+	ngOnInit() {
+		
+	}
+	
   onSubmit(){
-  
+	  const auct = {
+		  Title: this.Title,
+		  Description: this.Description,
+		  Brand: this.Brand,
+		  Model: this.Model,
+		  Image: this.Image,
+		  userValue: this.userValue,
+		  PropValue: this.PropValue,
+		  FinalValue: this.FinalValue,
+		  User: this.authService.authToken,
+		  Status: "Pending",
+		  Bids: {
+			  User: this.authService.authToken,
+			  Value: 0,
+			  Date: Date.now()
+		  }
+	  
+		  
+	  };
+	  console.log("aaaaaaaaaaaaaaaa"+auct);
+	  this.auctionService.registerAuction(auct).subscribe(data => {
+
+		  console.log(data);
+		  this.router.navigate(["app-auctions"]);
+	  }, err => {
+		  console.log(err);
+		  return false;
+	  });
+
+	  
+	
   }
+
 
 }
+	
+
+
