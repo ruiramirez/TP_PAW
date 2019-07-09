@@ -76,20 +76,20 @@ auctionController.updateAuction = function (req, res, next) {
 	Auction.findByIdAndUpdate(req.body._id, {
 		Status: req.body.Status
 	}, {
-		new: true
-	}, function (err, act) {
-		if (err) {
-			next(err);
-		} else {
-			act.save(err => {
-				if (err) {
-					next(err);
-				} else {
-					res.json(act);
-				}
-			});
-		}
-	})
+			new: true
+		}, function (err, act) {
+			if (err) {
+				next(err);
+			} else {
+				act.save(err => {
+					if (err) {
+						next(err);
+					} else {
+						res.json(act);
+					}
+				});
+			}
+		})
 };
 
 auctionController.deleteAuction = function (req, res, next) {
@@ -130,10 +130,10 @@ auctionController.getAuction = function (req, res, next) {
 
 auctionController.getAuctionActive = function (req, res, next) {
 	Auction.find({
-			"Status": {
-				"$regex": "Active"
-			}
-		},
+		"Status": {
+			"$regex": "Active"
+		}
+	},
 		function (err, act) {
 			if (err) {
 				next(err);
@@ -144,43 +144,51 @@ auctionController.getAuctionActive = function (req, res, next) {
 }
 
 auctionController.makeBid = (req, res, next) => {
-
-	Auction.updateOne({
-		_id: req.body.Auction._id
-	}, {
-		$push: {
-			Bids: {
-				User: req.body.User,
-				Value: req.body.Value,
-				Date: new Date(),
-			},
-		}
-	}, (err, act) => {
-		console.log(act);
+	console.log(req.body);
+	Auction.find({ Title: req.body.Auction.Title }, (err, a) => {
 		if (err) {
-			return err;
+			next(err);
 		} else {
-			console.log("não houve erro");
 			Auction.updateOne({
-				_id: req.body.Auction._id
+				_id: a[0]._id
 			}, {
-				$push: {
-					Bids: {
-						$each: [],
-						$sort: {
-							Value: -1
-						}
-					},
-				},
-			}, (err, act) => {
-				if (err) {
-					return err;
-				} else {
-					res.json(act);
-				}
-			});
+					$push: {
+						Bids: {
+							User: req.body.User,
+							Value: req.body.Value,
+							Date: new Date(),
+						},
+					}
+				}, (err, ac) => {
+					console.log(ac);
+					if (err) {
+						return err;
+					} else {
+						Auction.updateOne({
+							_id: a._id
+						}, {
+								$push: {
+									Bids: {
+										$each: [],
+										$sort: {
+											Value: -1
+										}
+									},
+								},
+							}, (err, act) => {
+								if (err) {
+									console.log("houve erro");
+									return err;
+								} else {
+									console.log("não houve erro");
+									res.json(act);
+
+								}
+							});
+					}
+				});
 		}
-	});
+	})
 }
 
 
@@ -189,18 +197,18 @@ auctionController.makeBid = (req, res, next) => {
 
 auctionController.getSpecificAuctionBids = function (req, res, next) {
 	Auction.aggregate([{
-			$unwind: "$Bids"
-		}, {
-			$match: {
-				"Title": req.body.Title
-			}
-		}, {
-			$project: {
-				"Title": 1,
-				"Bids.User": 1,
-				"Bids.Value": 1
-			}
-		}],
+		$unwind: "$Bids"
+	}, {
+		$match: {
+			"Title": req.body.Title
+		}
+	}, {
+		$project: {
+			"Title": 1,
+			"Bids.User": 1,
+			"Bids.Value": 1
+		}
+	}],
 		function (err, bid) {
 			if (err) {
 				next(err);
@@ -214,17 +222,17 @@ auctionController.getSpecificAuctionBids = function (req, res, next) {
 
 auctionController.getNumberOfBids = function (req, res, next) {
 	Auction.aggregate([{
-				$unwind: "$Bids"
-			}, {
-				$group: {
-					"_id": "NumberOfBids",
-					total: {
-						$sum: 1
-					}
-				}
+		$unwind: "$Bids"
+	}, {
+		$group: {
+			"_id": "NumberOfBids",
+			total: {
+				$sum: 1
 			}
+		}
+	}
 
-		],
+	],
 		function (err, bid) {
 			if (err) {
 				next(err);
@@ -235,6 +243,43 @@ auctionController.getNumberOfBids = function (req, res, next) {
 	);
 }
 
+auctionController.getMaxAuctionBid = function (req, res, next) {
+	console.log(req.params.id);
 
+	Auction.find({ _id: req.params.id }, (err, act) => {
+		if (err) {
+			next(err);
+		} else {
+			Auction.aggregate([{
+				$unwind: "$Bids"
+			}, {
+				$match: {
+					"Title": act[0].Title
+				}
+			}, {
+				$group: {
+					_id: "$Title",
+					max: {
+						$max:
+							"$Bids.Value"
+					}
+
+				}
+			}],
+				function (err, bid) {
+					if (err) {
+						next(err);
+					} else {
+						console.log(bid);
+						res.json(bid);
+
+					}
+				}
+			);
+
+		}
+	})
+
+}
 
 module.exports = auctionController;
