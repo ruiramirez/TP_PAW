@@ -11,6 +11,7 @@ router.get("/getActive", auctionController.getAuctionActive);
 router.get("/specificAuction", auctionController.getSpecificAuctionBids);
 router.get("/numberOfBids", auctionController.getNumberOfBids);
 router.get("/show/:id", auctionController.findById);
+router.get("/maxValueBid/:id",auctionController.getMaxAuctionBid)
 
 router.post("/bid", auctionController.makeBid);
 

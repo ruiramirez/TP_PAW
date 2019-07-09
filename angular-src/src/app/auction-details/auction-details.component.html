@@ -28,8 +28,9 @@
         <div class="card-footer">
           <form action="" method="POST">
             <div class="form-group">
-              <div class="font-weight bold h5">{{ auction.Bids[0].Value }} €</div>
-              <div class="input-group mt-3">
+              <div *ngIf="auction.FinalValue > 0; else otherValue" class="font-weight bold h5">{{ maxBid }} €</div>
+			<ng-template #otherValue> {{ maxBid }}</ng-template>
+			  <div class="input-group mt-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">€</span>
                 </div>
@@ -37,7 +38,7 @@
                   aria-describedby="basic-addon1">
               </div>
 
-            </div>
+			</div>
 
             <div class="form-group">
               <button type="submit" class="btn btn-block btn-rounded btn-primary" (click)="onClickSubmit()">
@@ -65,7 +66,7 @@
     </div>
   </div>
 
-  <div class="row mt-3">
+  <div *ngIf="!isUser" class="row mt-3">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header bg-dark text-white">
