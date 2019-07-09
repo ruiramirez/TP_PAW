@@ -25,7 +25,7 @@ export class AuctionService {
   }
 
 
-	registerAuction(auct: Auction) {
+	registerAuction(auct) {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json",

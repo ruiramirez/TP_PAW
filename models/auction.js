@@ -36,7 +36,7 @@ var auctionSchema = new Schema({
   EndDate: Date,
   User: {
     type: userSchema,
-    required: true
+  //  required: true
   },
   Bids: [{
     User: userSchema,
